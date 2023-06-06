@@ -1,18 +1,13 @@
 import { createRoot } from 'react-dom/client';
 // eslint-disable-next-line import/order
-import App from './App';
 
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 // eslint-disable-next-line import/order
-import { ContextProvider } from './context/store';
 import { H } from 'highlight.run';
 // import css
 import 'antd/dist/antd.min.css';
-import './overiseStyle/style.min.css';
+import Main from './Main';
 import './assets/vendors/styles.css';
-import { ErrorBoundary as ErrorBoundaryLibra } from '@highlight-run/react';
-import ErrorBoundary from './features/Error/ErrorBoundary';
+import './overiseStyle/style.min.css';
 
 H.init('jdk0mve5');
 H.init('jdk0mve5', {
@@ -25,17 +20,7 @@ H.identify('khanhandli@gmail.com', {
 });
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
-root.render(
-  <ErrorBoundaryLibra showDialog>
-    <BrowserRouter>
-      <ContextProvider>
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
-      </ContextProvider>
-    </BrowserRouter>
-  </ErrorBoundaryLibra>
-);
+root.render(<Main />);
 
 // calling IPC exposed from preload script
 window.electron.ipcRenderer.once('ipc-example', (arg) => {
